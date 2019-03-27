@@ -8,5 +8,8 @@ class EnumTest {
 	public static function main() {
 		var value = MyValue.Int(33);
 		trace(value);		
+
+		var value = MyValue.Float(33);
+		trace(value);		
 	}
 }
