@@ -1,0 +1,7 @@
+-cp src
+-lib craxe
+--macro craxe.ast2obj.Generator.generate()
+--no-output
+-D nim
+-D eval-stack
+-main Fibonacci
