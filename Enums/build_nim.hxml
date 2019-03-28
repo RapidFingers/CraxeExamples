@@ -1,7 +1,8 @@
 -cp src
 -lib craxe
---macro craxe.ast2obj.Generator.generate()
+--macro craxe.Generator.generate()
 --no-output
 -D nim
+-D nim-out=./out/nim/main.nim
 -D eval-stack
 -main EnumTest
