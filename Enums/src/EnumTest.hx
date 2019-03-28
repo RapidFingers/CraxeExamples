@@ -5,6 +5,14 @@ enum MyValue {
 	Some(v:Int, s:String, arg:Array<Int>);
 }
 
+class MyClass {
+	public var id:Int;
+
+	public function new() {
+
+	}
+}
+
 class EnumTest {
 	public static function main() {
 		var value = MyValue.Int(33);
