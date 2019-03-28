@@ -49,47 +49,31 @@ proc `$`[T](this:HaxeArray[T]) : string {.inline.} =
 
 type 
     MyValueSome = object of HaxeEnum
-        v : Ints : String
-        arg : Array
+        v : int
+        s : string
+        arg : HaxeArray[int]
 
     MyValueNone = object of HaxeEnum
-        MyValue
 
     MyValueInt = object of HaxeEnum
-        v : Int
+        v : int
 
     MyValueFloat = object of HaxeEnum
-        v : Float
-
-    EncodingUTF8 = object of HaxeEnum
-        Encoding
-
-    EncodingRawNative = object of HaxeEnum
-        Encoding
-
-    ErrorOverflow = object of HaxeEnum
-        Error
-
-    ErrorOutsideBounds = object of HaxeEnum
-        Error
-
-    ErrorCustom = object of HaxeEnum
-        e : Dynamic
-
-    ErrorBlocked = object of HaxeEnum
-        Error
+        v : float
 
 
-proc newMyValueSome(v:int) : MyValueSome =
-proc newMyValueNone(v:int) : MyValueNone =
-proc newMyValueInt(v:int) : MyValueInt =
-proc newMyValueFloat(v:int) : MyValueFloat =
-proc newEncodingUTF8(v:int) : EncodingUTF8 =
-proc newEncodingRawNative(v:int) : EncodingRawNative =
-proc newErrorOverflow(v:int) : ErrorOverflow =
-proc newErrorOutsideBounds(v:int) : ErrorOutsideBounds =
-proc newErrorCustom(v:int) : ErrorCustom =
-proc newErrorBlocked(v:int) : ErrorBlocked =
+proc newMyValueSome(v:int, s:string, arg:HaxeArray[int]) : MyValueSome {.inline.} =
+    MyValueSome(index: 3, tag: "MyValueSome", v: v, s: s, arg: arg)
+
+proc newMyValueNone() : MyValueNone {.inline.} =
+    MyValueNone(index: 0, tag: "MyValueNone")
+
+proc newMyValueInt(v:int) : MyValueInt {.inline.} =
+    MyValueInt(index: 1, tag: "MyValueInt", v: v)
+
+proc newMyValueFloat(v:float) : MyValueFloat {.inline.} =
+    MyValueFloat(index: 2, tag: "MyValueFloat", v: v)
+
 type 
     EnumTest = ref object of RootObj
     EnumTestStatic = ref object of RootObj

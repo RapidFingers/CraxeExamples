@@ -7,16 +7,19 @@ function $extend(from, fields) {
 	if( fields.toString !== Object.prototype.toString ) proto.toString = fields.toString;
 	return proto;
 }
-var MyValue = $hxEnums["MyValue"] = { __ename__ : true, __constructs__ : ["Int","Float","Some"]
-	,Int: ($_=function(v) { return {_hx_index:0,v:v,__enum__:"MyValue",toString:$estr}; },$_.__params__ = ["v"],$_)
-	,Float: ($_=function(v) { return {_hx_index:1,v:v,__enum__:"MyValue",toString:$estr}; },$_.__params__ = ["v"],$_)
-	,Some: ($_=function(v,s,arg) { return {_hx_index:2,v:v,s:s,arg:arg,__enum__:"MyValue",toString:$estr}; },$_.__params__ = ["v","s","arg"],$_)
+var MyValue = $hxEnums["MyValue"] = { __ename__ : true, __constructs__ : ["None","Int","Float","Some"]
+	,None: {_hx_index:0,__enum__:"MyValue",toString:$estr}
+	,Int: ($_=function(v) { return {_hx_index:1,v:v,__enum__:"MyValue",toString:$estr}; },$_.__params__ = ["v"],$_)
+	,Float: ($_=function(v) { return {_hx_index:2,v:v,__enum__:"MyValue",toString:$estr}; },$_.__params__ = ["v"],$_)
+	,Some: ($_=function(v,s,arg) { return {_hx_index:3,v:v,s:s,arg:arg,__enum__:"MyValue",toString:$estr}; },$_.__params__ = ["v","s","arg"],$_)
 };
 var EnumTest = function() { };
 EnumTest.__name__ = true;
 EnumTest.main = function() {
 	var value = MyValue.Int(33);
-	console.log("src/EnumTest.hx:10:",value);
+	console.log("src/EnumTest.hx:11:",value);
+	var value1 = MyValue.Float(33);
+	console.log("src/EnumTest.hx:14:",value1);
 };
 Math.__name__ = true;
 var js__$Boot_HaxeError = function(val) {
