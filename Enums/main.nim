@@ -49,16 +49,39 @@ proc `$`[T](this:HaxeArray[T]) : string {.inline.} =
 
 type 
     MyValueSome = object of HaxeEnum
+        v : Ints : String
+        arg : Array
+
+    MyValueNone = object of HaxeEnum
+        MyValue
+
     MyValueInt = object of HaxeEnum
+        v : Int
+
     MyValueFloat = object of HaxeEnum
+        v : Float
+
     EncodingUTF8 = object of HaxeEnum
+        Encoding
+
     EncodingRawNative = object of HaxeEnum
+        Encoding
+
     ErrorOverflow = object of HaxeEnum
+        Error
+
     ErrorOutsideBounds = object of HaxeEnum
+        Error
+
     ErrorCustom = object of HaxeEnum
+        e : Dynamic
+
     ErrorBlocked = object of HaxeEnum
+        Error
+
 
 proc newMyValueSome(v:int) : MyValueSome =
+proc newMyValueNone(v:int) : MyValueNone =
 proc newMyValueInt(v:int) : MyValueInt =
 proc newMyValueFloat(v:int) : MyValueFloat =
 proc newEncodingUTF8(v:int) : EncodingUTF8 =

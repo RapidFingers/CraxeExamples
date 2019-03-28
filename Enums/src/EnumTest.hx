@@ -1,4 +1,5 @@
 enum MyValue {
+	None;
 	Int(v:Int);
 	Float(v:Float);
 	Some(v:Int, s:String, arg:Array<Int>);
