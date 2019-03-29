@@ -7,8 +7,8 @@ class MyType {
 		this.name = name;
 	}
 
-	public function say() {
-		trace('id: ${id} name: ${name}');
+	public function say(text:String) {
+		trace('id: ${id} name: ${name} say: ${text}');
 	}
 }
 
@@ -19,7 +19,7 @@ class ArrayTest {
 		arr.push(new MyType(2, "Superman"));
 		
 		for (it in arr) {
-			it.say();
+			it.say("GOOD");
 		}
 
 		var arr = [new MyType(1, "Batman"), new MyType(3, "Superman")];
