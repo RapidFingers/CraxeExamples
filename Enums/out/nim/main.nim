@@ -6,9 +6,6 @@
 import nimboot
 
 type 
-    MyClass = ref object of RootObj
-        id : int
-
     EnumTest = ref object of RootObj
 
 
