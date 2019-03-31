@@ -1,3 +1,0 @@
--cp src
--js out/js/main.js
--main EnumTest
