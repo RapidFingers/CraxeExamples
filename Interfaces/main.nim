@@ -4,15 +4,18 @@
 {.experimental: "codeReordering".}
 
 import nimboot
+import typetraits
 
 type 
     IUser = tuple[
         obj : ref RootObj,
-        get_name : proc ():string,
+        name : ptr string,
         getKey : proc ():string
     ]
 
-    ServiceUser = ref object of RootObj
+    User = ref object of RootObj
+
+    ServiceUser = ref object of User
         name : string
 
     Interfaces = ref object of RootObj
@@ -21,12 +24,24 @@ type
 
 let InterfacesStaticInst = InterfacesStatic()
 
-proc toIUser(this:ServiceUser) : IUser =
+converter toIUser(this:ServiceUser) : IUser =
     return (
         obj: this,
-        get_name: proc():string {.closure.} = this.name,
-        getKey: proc():string {.closure.} = this.getKey()
+        name: addr this.name,
+        getKey: proc ():string = this.getKey()
     )
+
+template checkType(this:IUser, some:untyped):bool =
+    this.obj of some
+
+template checkType(this:ref RootObj, some:untyped):bool =
+    this of some
+
+template castType[T](this:IUser, some:typedesc[T]):T =
+    cast[T](this.obj)
+
+template castType[T](this:ref RootObj, some:typedesc[T]):T =
+    cast[T](this)
 
 proc initServiceUser(this:ServiceUser) {.inline.} =
     discard
@@ -41,14 +56,21 @@ proc getKey(this:ServiceUser) : string =
 proc `$`(this:ServiceUser) : string {.inline.} = 
     result = "ServiceUser" & $this[]
 
+proc testCheck(this:ref RootObj) =
+    echo checkType(this, User)
+
 proc processUser(this:InterfacesStatic, user:IUser) : void =
     var key = user.getKey()
+    let suser = castType(user, ServiceUser)
+    echo suser.name
     LogStaticInst.trace(key, "src/Interfaces.hx", 19, "Interfaces", "processUser")
-    LogStaticInst.trace(user.get_name(), "src/Interfaces.hx", 20, "Interfaces", "processUser")
+    LogStaticInst.trace(user.name[], "src/Interfaces.hx", 20, "Interfaces", "processUser")
 
 proc main(this:InterfacesStatic) : void =
     var user = newServiceUser()
-    InterfacesStaticInst.processUser(user.toIUser())
+    testCheck(user)
+    user.name = "Batman"
+    InterfacesStaticInst.processUser(user)
 
 proc `$`(this:Interfaces) : string {.inline.} = 
     result = "Interfaces" & $this[]
