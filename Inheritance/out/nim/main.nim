@@ -37,9 +37,7 @@ proc `$`(this:User) : string {.inline.} =
     result = "User" & $this[]
 
 proc initGameUser(this:GameUser, id:int, name:string, scores:int) {.inline.} =
-    template super(id, name) =
-        initUser(this, id, name)
-    super(id, name)
+    initUser(this, id, name)
     this.scores = scores
 
 proc newGameUser(id:int, name:string, scores:int) : GameUser {.inline.} =
@@ -53,9 +51,7 @@ proc `$`(this:GameUser) : string {.inline.} =
     result = "GameUser" & $this[]
 
 proc initOnlineGameUser(this:OnlineGameUser, id:int, name:string, scores:int, room:int) {.inline.} =
-    template super(id, name, scores) =
-        initGameUser(this, id, name, scores)
-    super(id, name, scores)
+    initGameUser(this, id, name, scores)
     this.room = room
 
 proc newOnlineGameUser(id:int, name:string, scores:int, room:int) : OnlineGameUser {.inline.} =
