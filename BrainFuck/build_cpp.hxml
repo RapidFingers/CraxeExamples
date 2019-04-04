@@ -1,0 +1,3 @@
+-cp src
+-main BrainFuck
+-cpp out/cpp

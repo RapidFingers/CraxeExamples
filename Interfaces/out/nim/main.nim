@@ -7,12 +7,16 @@ import nimboot
 
 type 
     IUser = tuple[
-        obj : ref RootObj
+        obj : ref RootObj, 
+        name : ptr string, 
+        getKey : proc () : string
     ]
 
 converter toIUser(this:ServiceUser) : IUser = 
     return (
-        obj: this,
+        obj: this, 
+        name : addr this.name, 
+        getKey : proc () : string = this.getKey()
     )
 
 
@@ -27,6 +31,7 @@ type
 let InterfacesStaticInst = InterfacesStatic()
 
 proc initServiceUser(this:ServiceUser) {.inline.} =
+    discard
 
 proc newServiceUser() : ServiceUser {.inline.} =
     result = ServiceUser()
@@ -41,7 +46,7 @@ proc `$`(this:ServiceUser) : string {.inline.} =
 proc processUser(this:InterfacesStatic, user:IUser) : void =
     var key = user.getKey()
     LogStaticInst.trace(key, "src/Interfaces.hx", 19, "Interfaces", "processUser")
-    LogStaticInst.trace(user.name, "src/Interfaces.hx", 20, "Interfaces", "processUser")
+    LogStaticInst.trace(user.name[], "src/Interfaces.hx", 20, "Interfaces", "processUser")
 
 proc main(this:InterfacesStatic) : void =
     var user = newServiceUser()
