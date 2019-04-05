@@ -42,7 +42,7 @@ class Program {
 
 	function parse():Array<Operation> {
 		var res = new Array<Operation>();
-		while (pos < text.length) { 
+		while (pos < text.length) {
 			var c = text.charAt(pos);
 			pos += 1;
 			switch c {

@@ -131,7 +131,7 @@ proc parse(this:Program) : HaxeArray[Operation] =
 
 proc runInternal(this:Program, operations:HaxeArray[Operation], tape:Tape) : void =
     var locg = 0
-    while locg < operations.length:
+    while locg < operations.length:        
         var op = operations.get(locg)
         bpOperator(locg)
         if op == 0:
