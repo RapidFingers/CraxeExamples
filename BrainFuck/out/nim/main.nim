@@ -81,14 +81,14 @@ proc newTape() : Tape {.inline.} =
     initTape(result)
 
 proc get(this:Tape) : int =
-    return this.tape.b[this.pos]
+    return this.tape[this.pos]
 
 proc inc(this:Tape, x:int) : void =
-    var b = this.tape.b[this.pos]
+    var b = this.tape[this.pos]
     b += x
     var locthis = this.tape
     var pos = this.pos
-    locthis.b[pos] = b and 255
+    locthis[pos] = b and 255
 
 proc move(this:Tape, x:int) : void =
     this.pos += x
@@ -136,21 +136,21 @@ proc runInternal(this:Program, operations:HaxeArray[Operation], tape:Tape) : voi
         bpOperator(locg)
         if op == 0:
             var v = cast[OperationInc](op).v
-            var b = tape.tape.b[tape.pos]
+            var b = tape.tape[tape.pos]
             b += v
             var locthis = tape.tape
             var pos = tape.pos
-            locthis.b[pos] = b and 255
+            locthis[pos] = b and 255
         elif op == 1:
             var v1 = cast[OperationMove](op).v
             tape.pos += v1
             while tape.pos >= tape.tape.length:
                 tape.tape = HaxeBytesStaticInst.alloc(tape.tape.length * 2)
         elif op == 2:
-            LogStaticInst.trace(tape.tape.b[tape.pos], "src/BrainFuck.hx", 79, "Program", "runInternal")
+            LogStaticInst.trace(tape.tape[tape.pos], "src/BrainFuck.hx", 79, "Program", "runInternal")
         elif op == 3:
             var v2 = cast[OperationLoop](op).v
-            while tape.tape.b[tape.pos] > 0:
+            while tape.tape[tape.pos] > 0:
                 this.runInternal(v2, tape)
 
 
