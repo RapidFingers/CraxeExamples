@@ -25,6 +25,8 @@ It's not accurate benchmark. Don't throw stones in me for that :)
 
 ## Platform info
 
+Haxe Compiler 4.0.0-rc.2+175840a - (C)2005-2019 Haxe Foundation
+
 Nim Compiler Version 0.19.4 [Linux: amd64]
 Compiled at 2019-02-01
 
