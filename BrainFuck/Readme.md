@@ -1,6 +1,6 @@
-## Benchmark for craxe
+# Benchmark for craxe
 
-# About
+## About
 
 It uses brainfuck implementation from https://github.com/kostya/benchmarks/blob/master/brainfuck2/bf.cs ported to Haxe
 
@@ -9,17 +9,19 @@ It's not accurate benchmark. Don't throw stones in me for that :)
 - There is no .net core bench, i need to investigate how to compile it.
 - There is no python and php target. I think they will be too slow and no need to bench them.
 
-# Results
+## Results
 
-- nim-raw: time: 2.26s memory: 1.81Mb
-- nim-craxe: time: 2.85s memory: 0.68Mb
-- hxcpp: time: 4.68s memory: 2.71Mb
-- java: time: 4.34s memory: 40.3Mb
-- nodejs: time: 6.5s memory: 30.7Mb
-- mono .net: time: 11.11s memory: 15.57Mb
-- hashlink-jit: time: 13.82s memory: 3.09Mb
+| N | Tagret    | Time, s | Memory, Mb |
+|---|-----------|---------|------------|
+| 1 | nim-raw   | 2.26    | 1.81       |
+| 2 | nim-craxe | 2.85    | 0.68       |
+| 3 | java      | 4.34    | 40.3       |
+| 4 | hxcpp     | 4.68    | 2.71       |
+| 5 | nodejs    | 6.5     | 30.7       |
+| 6 | mono .net | 11.11   | 15.57      |
+| 7 | hl-jit    | 13.82   | 3.09       |
 
-# Platform info
+## Platform info
 
 Nim Compiler Version 0.19.4 [Linux: amd64]
 Compiled at 2019-02-01
