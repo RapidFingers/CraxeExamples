@@ -94,7 +94,7 @@ class Program {
 
 class BrainFuck {
 	public static function main() {
-		var text = File.getContent("../code.b");
+		var text = File.getContent("code.b");
 		var program = new Program(text);
 		program.run();
 	}

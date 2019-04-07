@@ -32,7 +32,7 @@ bool BrainFuck_obj::_hx_isInstanceOf(int inClassId) {
 
 void BrainFuck_obj::main(){
             	HX_GC_STACKFRAME(&_hx_pos_d3b0a3e41b86058a_96_main)
-HXLINE(  97)		::String text = ::sys::io::File_obj::getContent(HX_("../code.b",10,6c,17,92));
+HXLINE(  97)		::String text = ::sys::io::File_obj::getContent(HX_("code.b",e1,3e,35,c1));
 HXLINE(  98)		 ::Program program =  ::Program_obj::__alloc( HX_CTX ,text);
 HXLINE(  99)		program->run();
             	}
