@@ -15,10 +15,12 @@ template `+`*(i:untyped, s:string): string =
 template `+`*(s1:string, s2:string): string =
     s1 & s2
 
+template toString*(this:untyped):untyped =
+    $this
+
 type
     StdStatic* = object
     LogStatic* = object
-    StaticArrayHelper* = object
     HaxeBytesStatic* = object
     FileStatic* = object
 
@@ -35,7 +37,6 @@ let LogStaticInst* = LogStatic()
 let StdStaticInst* = StdStatic()
 let HaxeBytesStaticInst* = HaxeBytesStatic()
 let FileStaticInst* = FileStatic()
-let StaticArrayHelperInst* = StaticArrayHelper();
 
 template trace*(this:LogStatic, v:byte, e:varargs[string, `$`]):void =
     write(stdout, e[0] & " " & e[1] & ": ")
@@ -47,11 +48,6 @@ template trace*(this:LogStatic, v:untyped, e:varargs[string, `$`]):void =
 
 template string*(this:StdStatic, v:untyped): string =
     $v
-
-# StaticArrayHelper
-
-template toBytes*(this:StaticArrayHelper, arr:openarray[uint8]):HaxeBytes =
-    HaxeArray(data: arr)
 
 # String
 template length*(this:string) : int =
