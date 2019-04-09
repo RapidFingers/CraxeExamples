@@ -1,12 +1,18 @@
-extern abstract Port(Int) from Int {
+extern class Distinct<T> {
+    public function new(v:T);
+}
 
+@:require("asyncdispatch")
+extern class Port extends Distinct<Int> {
+    
 }
 
 @:require("asyncnet")
 extern class AsyncSocket {
-    @:constructor
-    @:native("newAsyncSocket")    
-    public static function create():AsyncSocket;
-    public function bindAddr(port:Port, address:String = ""):Void;
-    public function listen():Void;
+	@:topFunction
+	@:native("newAsyncSocket")
+	public static function create():AsyncSocket;
+	public function bindAddr(port:Port, address:String = ""):Void;
+	public function listen():Void;
+    public function accept():Future<AsyncSocket>;
 }
