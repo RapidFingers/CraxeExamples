@@ -1,6 +1,4 @@
-import craxe.nim.Struct;
-
-extern class MD5Digest extends Struct {
+extern class MD5Digest {
 	public function toString():String;
 }
 
