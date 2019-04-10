@@ -23,7 +23,12 @@ proc main(this:ExternTestStatic) : void =
     var sock = newAsyncSocket()
     sock.bindAddr(Port(26301))
     sock.listen()
-    sock.accept().handle()
+    sock.accept().addCallback(
+        proc() = 
+            LogStaticInst.trace("GOOD", "src/ExternTest.hx", 15, "ExternTest", "main")
+            discard
+    )
+    runForever()
 
 proc `$`(this:ExternTest) : string {.inline.} = 
     result = "ExternTest" & $this[]

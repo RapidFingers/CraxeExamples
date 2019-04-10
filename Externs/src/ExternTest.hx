@@ -14,5 +14,7 @@ class ExternTest {
 		sock.accept().handle(() -> {
 			trace("GOOD");
 		});
+
+		AsyncDispatch.runForever();
 	}
 }
