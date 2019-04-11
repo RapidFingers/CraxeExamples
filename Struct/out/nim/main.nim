@@ -8,7 +8,7 @@ import nimboot
 type 
     StructTest = ref object of RootObj
 
-    StructTestStatic = ref object of RootObj
+    StructTestStatic = object of RootObj
 
     User = object of Struct
         id : int

@@ -15,11 +15,16 @@ template `+`*(i:untyped, s:string): string =
 template `+`*(s1:string, s2:string): string =
     s1 & s2
 
+template toString*(this:untyped):untyped =
+    $this
+
 type
     StdStatic* = object
     LogStatic* = object
     HaxeBytesStatic* = object
     FileStatic* = object
+
+    Struct* = object of RootObj
 
     HaxeEnum* = ref object of RootObj
         index*:int
@@ -42,9 +47,6 @@ template trace*(this:LogStatic, v:byte, e:varargs[string, `$`]):void =
 template trace*(this:LogStatic, v:untyped, e:varargs[string, `$`]):void =
     write(stdout, e[0] & " " & e[1] & ": ")
     echo v
-
-template string*(this:StdStatic, v:untyped): string =
-    $v
 
 # String
 template length*(this:string) : int =

@@ -5,5 +5,4 @@
 -D nim
 -D nim-out=./out/nim/main.nim
 -D eval-stack
--D debug_gen
 -main SwitchTest

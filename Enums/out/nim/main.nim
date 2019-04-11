@@ -73,7 +73,8 @@ proc `==`(e1:MyValueFloat, e2:MyValueFloat) : bool {.inline.} =
 type 
     EnumTest = ref object of RootObj
 
-    EnumTestStatic = ref object of RootObj
+    EnumTestStatic = object of RootObj
+
 
 let EnumTestStaticInst = EnumTestStatic()
 
