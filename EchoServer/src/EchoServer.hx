@@ -8,7 +8,7 @@ class EchoServer {
 				return;
 
 			trace(dat);
-			var sfut = client.send(${dat});
+			client.send(${dat});
 			handleClient(client);
 		}));
 	}

@@ -1,6 +1,4 @@
-extern class Distinct<T> {
-    public function new(v:T);
-}
+import craxe.nim.Distinct;
 
 @:require("asyncdispatch")
 extern class Port extends Distinct<Int> {
