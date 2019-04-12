@@ -25,12 +25,11 @@ proc newUser(name:string, email:string) : User {.inline.} =
     result = User()
     initUser(result, name, email)
 
-proc createAction(this:User) : proc(id:string):void =
+proc createAction(this:User, id:int) : proc():string =
     var locgthis = this
     return 
-        proc(id:string):void = 
-            LogStaticInst.trace("" + locgthis.name + "_" + locgthis.email + "_" + id, "src/ClosureTest.hx", 12, "User", "createAction")
-            return
+        proc():string = 
+            return "" + locgthis.name + "_" + locgthis.email + "_" + id
 
 proc `$`(this:User) : string {.inline.} = 
     result = "User" & $this[]
@@ -41,13 +40,15 @@ proc test(this:ClosureTestStatic, v:proc(id:int):string) : string =
 
 proc main(this:ClosureTestStatic) : void =
     var user = newUser("Batman", "batman@gmail.com")
-    var action = user.createAction()
-    action("33")
+    var action1 = user.createAction(33)
+    var action2 = user.createAction(44)
+    var ares1 = action1()
+    var ares2 = action2()
     var res = ClosureTestStaticInst.test(
-        proc(id:int):string =
-            return "" + user.name + "_" + user.email
+        proc(id:int):string = 
+            return "" + ares1 + "_" + ares2
     )
-    LogStaticInst.trace(res, "src/ClosureTest.hx", 31, "ClosureTest", "main")
+    LogStaticInst.trace(res, "src/ClosureTest.hx", 34, "ClosureTest", "main")
 
 proc `$`(this:ClosureTest) : string {.inline.} = 
     result = "ClosureTest" & $this[]
