@@ -5,4 +5,5 @@
 -D nim
 -D nim-out=./out/nim-craxe/main.nim
 -D eval-stack
+-D debug_gen
 -main BrainFuck
