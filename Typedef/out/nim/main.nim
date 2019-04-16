@@ -14,10 +14,10 @@ type
 let TypedefTestStaticInst = TypedefTestStatic()
 
 proc main(this:TypedefTestStatic) : void =
-    var user = 33, """Batman""", """batman@batman.com"""
-    var arr = newHaxeArray[]()
+    var user = 33, """Batman""", """batman@batman.com""", 1
+    var arr = newHaxeArray[Anon1701240139]()
     discard arr.push(user)
-    LogStaticInst.trace(arr, """src/TypedefTest.hx""", 18, """TypedefTest""", """main""")
+    LogStaticInst.trace(arr, """src/TypedefTest.hx""", 23, """TypedefTest""", """main""")
 
 proc `$`(this:TypedefTest) : string {.inline.} = 
     result = "TypedefTest" & $this[]
