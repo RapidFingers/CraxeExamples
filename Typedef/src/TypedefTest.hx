@@ -30,15 +30,25 @@ class ClassUser {
 }
 
 class TypedefTest {
+	static function getUser() {
+		return {
+			id:44,
+			name:"Superman",
+			email:"superman@gmail.com"
+		}
+	}
+
 	public static function main() {
-		var user:Admin = {
+		var admin:User = {
 			id: 33,
 			name: "Batman",
-			email: "batman@batman.com",
-			level: 1
+			email: "batman@batman.com"			
 		}
 
 		var arr = new Array<{id:Int, name:String, email:String}>();
+		arr.push(admin);
+
+		var user = getUser();
 		arr.push(user);
 
 		var clsUser = new ClassUser(44, "Superman", "super@gmail.com");
