@@ -33,6 +33,7 @@ proc main(this:TypedefTestStatic) : void =
     var arr = newHaxeArray[UserAnon]()
     discard arr.push(admin)
     discard arr.push(toUserAnon(User(email:"good", id:11, name:"GOOD")))
+    LogStaticInst.trace(arr, "src/TypedefTest.hx", 24, "TypedefTest", "main")
 
 proc `$`(this:TypedefTest) : string {.inline.} = 
     result = "TypedefTest" & $this[]

@@ -20,5 +20,7 @@ class TypedefTest {
 			name: "GOOD",
 			email: "good"
 		});
+
+		trace(arr);
 	}
 }
