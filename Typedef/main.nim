@@ -1,23 +1,22 @@
-type
+import nimboot
+
+type 
     User = ref object of RootObj
+        email:string
         id:int
         name:string
 
-    UserAnon = object
-        obj:ref RootObj
+    UserAnon = ref object
+        email:ptr string
         id:ptr int
         name:ptr string
 
-template toUserAnon(this:User):UserAnon =
-    UserAnon(obj:this, id:addr this.id, name:addr this.name)
+template toUserAnon[T](this:T):UserAnon =
+    UserAnon(email:addr this.email, id:addr this.id, name:addr this.name)
 
-proc getUser():UserAnon =
-    return User(id:33, name:"batman").toUserAnon()
+var arr = newHaxeArray[UserAnon]()
+var locg = 0
+for i in 0..1000000:
+    discard arr.push(toUserAnon(User(email: $i + "good", id:i, name: $i + "GOOD")))
 
-proc testProc(v:UserAnon) =
-    v.name[] = "superman"
-
-var user = getUser()
-testProc(user)
-var sq = newSeq[UserAnon]()
-sq.add(user)
+echo arr.length

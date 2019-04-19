@@ -1,8 +1,8 @@
-typedef User = {
-	var id:Int;
-	var name:String;
-	var email:String;
-}
+// typedef User = {
+// 	var id:Int;
+// 	var name:String;
+// 	var email:String;
+// }
 
 class ClassUser {
 	public var id:Int;
@@ -17,31 +17,30 @@ class ClassUser {
 }
 
 class TypedefTest {
-	static function test(arr:Array<User>) {
+	static function traceArray(arr:Array<{id:Int, name:String, email:String}>) {
 		for (it in arr) {
 			trace(it.name);
 		}
 	}
 
-	public static function main() {
-		var admin:User = {
-			id: 33,
-			name: "Batman",
-			email: "batman@batman.com"
-		}
-
+	static function getArray(size:Int):Array<{id:Int, name:String, email:String}> {
 		var arr = new Array<{id:Int, name:String, email:String}>();
-		arr.push(admin);
+		for (i in 0...size) {
+			arr.push({
+				id: i,
+				name: Std.string(i) + "batman",
+				email: Std.string(i) + "batman@gmail.com"
+			});
+		}
+		return arr;
+	}
 
-		var clsUser = new ClassUser(44, "Superman", "super@gmail.com");
-		arr.push(clsUser);
-		
-		arr.push({
-			id: 11,
-			name: "GOOD",
-			email: "good"
-		});
+	public static function main() {		
+		var arr = getArray(100);
 
-		test(arr);
+		var s = arr[10];
+		trace(s.id);
+
+		trace(arr.length);
 	}
 }
