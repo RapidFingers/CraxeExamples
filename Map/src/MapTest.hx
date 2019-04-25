@@ -8,23 +8,23 @@ class SomeKey {
 
 class MapTest {
 	public static function main() {
-		var stringmap = new Map<String, String>();
-		stringmap["batman"] = "batman@gmail.com";
-		stringmap["superman"] = "superman@gmail.com";
-		trace(stringmap);
-		trace(stringmap["batman"]);
+		// var stringmap = new Map<String, String>();
+		// stringmap["batman"] = "batman@gmail.com";
+		// stringmap["superman"] = "superman@gmail.com";
+		// trace(stringmap);
+		// trace(stringmap["batman"]);
 
 
-		var intmap = new Map<Int, String>();
-		intmap[33] = "batman";
-		intmap[44] = "superman";
-		trace(intmap);
+		// var intmap = new Map<Int, String>();
+		// intmap[33] = "batman";
+		// intmap[44] = "superman";
+		// trace(intmap);
 
 		var objmap = new Map<SomeKey, String>();
 		objmap[new SomeKey("batman")] = "batman@gmail.com";
 		objmap[new SomeKey("superman")] = "superman@gmail.com";
-		trace(objmap);
-		// var eq = objmap[new SomeKey("batman")] == objmap[new SomeKey("batman")];
-		// trace(eq);
+		// trace(objmap);
+		var eq = objmap[new SomeKey("batman")] == objmap[new SomeKey("batman")];
+		trace(eq);
 	}
 }
