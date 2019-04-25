@@ -9,10 +9,9 @@ class Build_all {
         trace('Build: ${path}');
         Sys.setCwd(path);
         var proc = new Process("haxe", [BUILD_NIM]);
-		proc.exitCode(true);
-        var out = proc.stdout.readAll().toString();
         var errs = proc.stderr.readAll().toString();
         if (errs.length < 1) {
+            var out = proc.stdout.readAll().toString();
             if (out.indexOf("Error") >=0) {
                 trace("ERROR");
                 trace(out);
@@ -22,7 +21,8 @@ class Build_all {
         } else {
             trace("ERROR");
             trace(errs);
-        }        
+        }
+        proc.close();
         Sys.setCwd("..");
     }
 
