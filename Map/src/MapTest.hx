@@ -5,7 +5,7 @@ class SomeKey {
 
 	public function new(key:String) {
 		this.key = key;
-	}	
+	}
 
 	public function hashCode():Int {
 		return key.length;
@@ -24,19 +24,36 @@ class MapTest {
 		intmap[33] = "batman";
 		intmap[44] = "superman";
 		trace(intmap);
+		trace(intmap[33]);
+		trace(intmap[34]);
 
 		var objmap = new Map<SomeKey, String>();
 		objmap[new SomeKey("batman")] = "batman@gmail.com";
 		objmap[new SomeKey("superman")] = "superman@gmail.com";
-		// trace(objmap);
-		var eq = objmap[new SomeKey("bat")] == objmap[new SomeKey("batman")];
+		var eq = objmap[new SomeKey("batman")] == objmap[new SomeKey("batman")];
 		trace(eq);
 
-		// var objmap = new Map<String, Int>();
-		// for (i in 0...10000000) {
-		// 	objmap[Std.string(i)] = i;
-		// }
+		var some = objmap[new SomeKey("batman")];
+		trace(some);
+		if (some == "batman@gmail.com") {
+			trace("EQUALS");
+		} else {
+			trace("NOT EQUALS");
+		}
 
-		// trace(objmap["1000"]);
+		var some = objmap[new SomeKey("bat")];
+		trace(some);
+		if (some == "batman@gmail.com") {
+			trace("EQUALS");
+		} else {
+			trace("NOT EQUALS");
+		}
+
+		var map = [
+			"Earth" => 33,
+			"Mars" => 44,
+		];
+
+		trace(map);
 	}
 }
