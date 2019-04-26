@@ -8,7 +8,7 @@ class SomeKey {
 	}	
 
 	public function hashCode():Int {
-		return 33;
+		return key.length;
 	}
 }
 
@@ -29,7 +29,14 @@ class MapTest {
 		objmap[new SomeKey("batman")] = "batman@gmail.com";
 		objmap[new SomeKey("superman")] = "superman@gmail.com";
 		// trace(objmap);
-		var eq = objmap[new SomeKey("batman")] == objmap[new SomeKey("batman")];
+		var eq = objmap[new SomeKey("bat")] == objmap[new SomeKey("batman")];
 		trace(eq);
+
+		// var objmap = new Map<String, Int>();
+		// for (i in 0...10000000) {
+		// 	objmap[Std.string(i)] = i;
+		// }
+
+		// trace(objmap["1000"]);
 	}
 }
