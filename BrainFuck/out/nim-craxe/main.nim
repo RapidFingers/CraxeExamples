@@ -3,7 +3,7 @@
 
 {.experimental: "codeReordering".}
 
-import nimboot
+import craxecore
 
 type 
     Operation = ref object of HaxeEnum
