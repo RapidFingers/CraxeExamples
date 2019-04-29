@@ -31,10 +31,21 @@ type
         name:ptr string
 
 proc toAdminAnon[T](this:T):AdminAnon {.inline.} =
-    AdminAnon(obj:this, email:addr this.email, id:addr this.id, level:addr this.level, name:addr this.name)
+    AdminAnon(
+        obj:this,
+        email:addr this.email, 
+        id:addr this.id, 
+        level:addr this.level, 
+        name:addr this.name
+    )
 
 proc toUserAnon[T](this:T):UserAnon {.inline.} =
-    UserAnon(obj:this, email:addr this.email, id:addr this.id, name:addr this.name)
+    UserAnon(
+        obj:this,
+        email:addr this.email, 
+        id:addr this.id, 
+        name:addr this.name
+    )
 
 
 type 

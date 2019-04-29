@@ -1,5 +1,7 @@
 import tables
 
+const TABLE_INIT_SIZE = 33554432
+
 type
     StdStatic* = object
     LogStatic* = object
@@ -43,10 +45,13 @@ type
     HaxeBytes* = ref object of HaxeObject
         b*:seq[byte]
     
-    Null*[T] = object
+        
+    ValueType = int | string | float | object
+
+    Null*[ValueType] = object
         case has*:bool
         of true:
-            value*:T
+            value*:ValueType
         of false:
             discard 
 
@@ -93,6 +98,26 @@ template toString*(this:untyped):untyped =
 template hash*(this:Hashable):int =
     this.hash()
 
+proc `==`*(v1:Null[ValueType], v2:ValueType):bool =
+    if v1.has:
+        return v1.value == v2
+    return false
+
+converter toValue*[ValueType](value:Null[ValueType]):ValueType =
+    if value.has:
+        return value.value
+    raise newException(NilAccessError, "Null pointer exception")
+
+proc `$`*(this:Null[ValueType]):string =
+    if this.has:
+        return $this.value
+    return "nil"
+
+proc `==`*[T](v1:Null[T], v2:Null[T]):bool =
+    if v1.has and v2.has:
+        return v1.value == v2.value    
+    return false
+
 proc `==`*(v1:Hashable, v2:Hashable):bool =
     v1.hash() == v2.hash()
 
@@ -101,14 +126,6 @@ template hash*(this:HaxeObjectRef):int =
 
 proc `==`*(v1:HaxeObjectRef, v2:HaxeObjectRef):bool =
     v1.hash() == v2.hash()
-
-converter toNullInt*(v:int):Null[int] = 
-    Null[int](has: true, value: v)
-
-converter fromNullInt*(v:Null[int]):int = 
-    if v.has:
-        return v.value
-    raise newException(NilAccessError, "Null pointer exception")
 
 # Log
 template trace*(this:LogStatic, v:byte, e:varargs[string, `$`]):void =
@@ -164,17 +181,11 @@ template `$`*[T](this:HaxeArray[T]) : string =
 template set*[K, V](this:HaxeMap[K, V], key:K, value:V) =
     this.data[key] = value
 
-template get*[K](this:HaxeMap[K, int], key:K):Null[int] =    
+proc get*[K](this:HaxeMap[K, ValueType], key:K):Null[ValueType] =    
     if this.data.hasKey(key):
-        Null[int](has: true, value: this.data[key])
+        return Null[ValueType](has: true, value: this.data[key])
     else:
-        Null[int](has: false)
-
-template get*[K](this:HaxeMap[K, string], key:K):Null[string] =    
-    if this.data.hasKey(key):
-        Null[string](has: true, value: this.data[key])
-    else:
-        Null[string](has: false)
+        return Null[ValueType](has: false)
 
 template get*[K, V](this:HaxeMap[K, V], key:K):V =
     if this.data.hasKey(key):
@@ -187,15 +198,15 @@ template `$`*[K, V](this:HaxeMap[K, V]) : string =
 
 proc newStringMap*[T]() : HaxeStringMap[T] =
     result = HaxeStringMap[T]()
-    result.data = initTable[string, T]()
+    result.data = initTable[string, T](TABLE_INIT_SIZE)
 
 proc newIntMap*[T]() : HaxeIntMap[T] =
     result = HaxeIntMap[T]()
-    result.data = initTable[int, T]()
+    result.data = initTable[int, T](TABLE_INIT_SIZE)
 
 proc newObjectMap*[K, V]() : HaxeObjectMap[K, V] =
     result = HaxeObjectMap[K, V]()
-    result.data = initTable[K, V]()
+    result.data = initTable[K, V](TABLE_INIT_SIZE)
 
 # Bytes
 template alloc*(this:HaxeBytesStatic, size:int) : HaxeBytes =
@@ -288,14 +299,14 @@ proc getPointerField*[T](this:Dynamic, name:string, tp:typedesc[T]):T =
     let fld = this.fields[name]
     return cast[T](fld.fpointer)
 
-converter fromString*(value:string):Dynamic =
-    newDynamic(value)
+# converter fromString*(value:string):Dynamic =
+#     newDynamic(value)
 
-converter fromInt*(value:int):Dynamic =
-    newDynamic(value)
+# converter fromInt*(value:int):Dynamic =
+#     newDynamic(value)
 
-converter fromFloat*(value:float):Dynamic =
-    newDynamic(value)
+# converter fromFloat*(value:float):Dynamic =
+#     newDynamic(value)
 
 proc call*(this:Dynamic, name:string, args:varargs[Dynamic]): Dynamic =
     nil

@@ -22,7 +22,7 @@ class GameUser extends User {
 
 	override function getKey():String {
 		var key = super.getKey();
-		return '${key}${scores}';
+		return '${key}_${scores}';
 	}
 
 	public function incScore(v:Int):Int {
@@ -36,6 +36,11 @@ class OnlineGameUser extends GameUser {
 	public function new(id:Int, name:String, scores:Int, room:Int) {
 		super(id, name, scores);
 		this.room = room;
+	}
+
+	override function getKey():String {
+		var key = super.getKey();
+		return '${key}_${room}';
 	}
 
 	public function leaveRoom() {
