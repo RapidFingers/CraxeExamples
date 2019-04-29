@@ -15,12 +15,17 @@ class User {
 class GameUser extends User {
 	public var scores:Int;
 
-	public function new(id:Int, name:String, scores:Int) {		
+	public function new(id:Int, name:String, scores:Int) {
 		super(id, name);
-		this.scores = scores;		
+		this.scores = scores;
 	}
 
-	public function incScore(v : Int):Int {
+	override function getKey():String {
+		var key = super.getKey();
+		return '${key}${scores}';
+	}
+
+	public function incScore(v:Int):Int {
 		return ++scores;
 	}
 }
@@ -38,7 +43,7 @@ class OnlineGameUser extends GameUser {
 	}
 }
 
-class Inheritance {		
+class Inheritance {
 	static public function main() {
 		var user = new OnlineGameUser(1, "Bamtan", 100, 33);
 		var key = user.getKey();
