@@ -6,13 +6,18 @@ class HttpServerTest {
 	public static function main() {
 		var httpServer = new HttpServer(26301);
 		httpServer.run((req) -> {
-			req.sendOk(html(
-				<html>
-					<body>
-						<h1>Hello world!!!</h1>
-					</body>
-				</html>
-			));
+			switch req.url.path {
+				case "/users":
+					req.sendOk(html(
+						<html>
+							<body>
+								<h1>Hello world!!!</h1>
+							</body>
+						</html>
+					));
+				case _:
+					req.sendOk("Unknown route");
+			}			
 		});
 
 		AsyncDispatch.runForever();
