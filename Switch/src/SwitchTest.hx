@@ -41,5 +41,17 @@ class SwitchTest {
 			case 44:
 				trace("NOT GOOD");
 		}
+
+		var some = "SomeValue";
+
+		// Test switch as expression
+		var name = switch some {
+			case "SomeValue":
+				"Earth";
+			case _:
+				"Mars";
+		}
+
+		trace(name);
 	}
 }
