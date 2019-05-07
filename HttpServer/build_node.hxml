@@ -1,0 +1,4 @@
+-cp src
+-lib hxnodejs
+-main NodeHttpServer
+-js out/node/main.js

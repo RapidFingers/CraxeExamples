@@ -2,7 +2,7 @@ import craxe.nim.http.HttpServer;
 import craxe.nim.async.AsyncDispatch;
 import HtmlMacro.html;
 
-class HttpServerTest {	
+class CraxeHttpServer {	
 	public static function main() {
 		var httpServer = new HttpServer(26301);
 		httpServer.run((req) -> {
