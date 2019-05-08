@@ -2,7 +2,8 @@
 
 ## About
 
-It's simple benchmark of two http servers. One is homemade http server, and right now it mostly uses code from https://github.com/dom96/httpbeast. Other one is well known nodejs. Both servers works on one thread, processes only http GET method request and return static plain text. Benchmark was performed on linux system with "wrk" util: wrk -t12 -c400 -d30s http://127.0.0.1:26301:users
+It's simple benchmark of two http servers. One is homemade http server, and right now it mostly uses code from https://github.com/dom96/httpbeast. Other one is well known nodejs. Both servers works on one thread, processes only http GET method request and return static plain text. Benchmark was performed on linux system with "wrk" util:\
+wrk -t12 -c400 -d30s http://127.0.0.1:26301:users
 
 ## Results
 
