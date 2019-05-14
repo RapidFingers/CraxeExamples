@@ -1,9 +1,9 @@
 import haxe.Json;
 
-class JsonTest {	
+class JsonTest {
 	public static function main() {
 		var userStr = Json.stringify({
-			"id": 3212,
+			"id": 1234,
 			"name": "Nandor",
 			"email": "nandor@gmail.com"
 		});
