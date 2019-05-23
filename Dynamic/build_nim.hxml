@@ -4,6 +4,6 @@
 --no-output
 -D nim
 -D nim-out=./out/nim/main.nim
+-D nim-dynamic=enable
 -D eval-stack
--D enable_dynamic
 -main DynamicTest

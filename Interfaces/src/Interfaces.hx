@@ -10,7 +10,9 @@ class ServiceUser implements IUser {
 		return "12345";
 	}
 
-	public function new() {}
+	public function new(name:String) {
+		this.name = name;
+	}
 }
 
 class Interfaces {		
@@ -21,7 +23,7 @@ class Interfaces {
 	}
 
 	static public function main() {
-		var user = new ServiceUser();
+		var user = new ServiceUser("Nandor");
 		processUser(user);
 	}
 }

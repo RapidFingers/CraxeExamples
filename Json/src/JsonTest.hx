@@ -8,7 +8,8 @@ class JsonTest {
 			"email": "nandor@gmail.com"
 		});
 
+		trace(userStr);
 		var data = Json.parse(userStr);
-		trace(data);
+		trace(data.email);
 	}
 }

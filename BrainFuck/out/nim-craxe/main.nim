@@ -55,6 +55,7 @@ proc `$`(this: OperationInc) : string {.inline.} =
 proc `==`(e1:OperationInc, e2:OperationInc) : bool {.inline.} =
     result = e1[] == e2[]
 
+### Classes and structures
 type 
     Tape = ref object of HaxeObject
         pos : int
@@ -69,7 +70,6 @@ type
 
     BrainFuckStatic = object of HaxeObject
 
-
 let BrainFuckStaticInst = BrainFuckStatic()
 
 proc initTape(this:Tape) {.inline.} =
@@ -77,8 +77,19 @@ proc initTape(this:Tape) {.inline.} =
     this.tape = HaxeBytesStaticInst.alloc(30000)
 
 proc newTape() : Tape {.inline.} =
-    result = Tape()
-    initTape(result)
+    var this = Tape()
+    initTape(this)
+    return this
+
+proc initProgram(this:Program, text:string) {.inline.} =
+    this.pos = 0
+    this.text = text
+    this.ops = this.parse()
+
+proc newProgram(text:string) : Program {.inline.} =
+    var this = Program()
+    initProgram(this, text)
+    return this
 
 proc get(this:Tape) : int =
     return this.tape[this.pos]
@@ -97,15 +108,6 @@ proc move(this:Tape, x:int) : void =
 
 proc `$`(this:Tape) : string {.inline.} = 
     result = "Tape" & $this[]
-
-proc initProgram(this:Program, text:string) {.inline.} =
-    this.pos = 0
-    this.text = text
-    this.ops = this.parse()
-
-proc newProgram(text:string) : Program {.inline.} =
-    result = Program()
-    initProgram(result, text)
 
 proc parse(this:Program) : HaxeArray[Operation] =
     var res = newHaxeArray[Operation]()
@@ -167,5 +169,6 @@ proc main(this:BrainFuckStatic) : void =
 
 proc `$`(this:BrainFuck) : string {.inline.} = 
     result = "BrainFuck" & $this[]
+
 
 BrainFuckStaticInst.main()

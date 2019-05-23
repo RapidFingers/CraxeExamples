@@ -4,6 +4,6 @@
 --no-output
 -D nim
 -D nim-out=./out/nim-craxe/main.nim
+-D nim-dynamic=enable
 -D eval-stack
--D debug_gen
 -main BrainFuck

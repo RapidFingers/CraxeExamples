@@ -12,11 +12,11 @@ class Build_all {
         var errs = proc.stderr.readAll().toString();
         if (errs.length < 1) {
             var out = proc.stdout.readAll().toString();
-            if (out.indexOf("Error") >=0) {
+            if (out.indexOf("SuccessX") > 0) {
+                trace("DONE");                
+            } else {
                 trace("ERROR");
                 trace(out);
-            } else {
-                trace("DONE");
             }
         } else {
             trace("ERROR");
