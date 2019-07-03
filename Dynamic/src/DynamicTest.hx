@@ -8,11 +8,13 @@ class User {
 
 class DynamicTest {
 	static function getDynamic():Dynamic  {
-		return "Hello";
+		var s = "Good";
+		s = s + " Morning";
+		return s;
 	}
 
-	static function passDynamic(d:String) {
-		trace(d);
+	static function passDynamic(v:String) {
+		trace(v);
 	}
 
 	public static function main() {	
