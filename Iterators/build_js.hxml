@@ -1,0 +1,4 @@
+-cp src
+-main IteratorsTest
+-D js-es=6
+-js main.js

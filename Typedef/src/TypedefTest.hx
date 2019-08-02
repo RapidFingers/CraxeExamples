@@ -25,9 +25,9 @@ class ClassUser {
 }
 
 class TypedefTest {
-	static function traceArray(arr:Array<Dynamic>) {
+	static function traceArray(arr:Array<Any>) {
 		for (it in arr) {
-			trace(it.name);
+			trace(cast(it, ClassUser));
 		}
 	}
 
@@ -39,8 +39,8 @@ class TypedefTest {
 		trace(user.name);
 	}
 
-	static function getArray(size:Int):Array<Dynamic> {
-		var arr = new Array<{id:Int, name:String, email:String}>();
+	static function getArray(size:Int):Array<Any> {
+		var arr = new Array<Any>();
 		for (i in 0...size) {
 			arr.push({
 				id: i,

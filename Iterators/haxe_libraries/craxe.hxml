@@ -1,0 +1,4 @@
+-D craxe=0.2.0
+# @install: lix --silent download "gh://github.com/RapidFingers/Craxe#c4e035d8506834f1b91b827af5aa40238959277e" into craxe/0.2.0/github/c4e035d8506834f1b91b827af5aa40238959277e
+#-cp ${HAXE_LIBCACHE}/craxe/0.2.0/github/c4e035d8506834f1b91b827af5aa40238959277e/src
+-cp d:/Workspace/Craxe/src
